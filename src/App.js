@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+/** configuration relate to UI */
+import React from 'react';
+import { useRoutes } from 'react-router-dom';
+import { CssBaseline, ThemeProvider } from '@mui/material';
+import LoadingScreen from './components/LoadingScreen';
+import { createTheme } from '@mui/material/styles';
 
-function App() {
+import routes from './routes';
+
+const App = () => {
+  const content = useRoutes(routes);
+
+  const theme = createTheme({});
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    // using Suspense: wait for language json files loaded
+    <React.Suspense fallback={<LoadingScreen />}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {content}
+      </ThemeProvider>
+    </React.Suspense>
   );
-}
+};
 
 export default App;

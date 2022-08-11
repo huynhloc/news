@@ -5,10 +5,22 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Link from '@mui/material/Link';
+import Avatar from '@mui/material/Avatar';
 import Typography from '@mui/material/Typography';
+import CardHeader from '@mui/material/CardHeader';
+import { grey } from '@mui/material/colors';
+
 
 const Article = ({author, description, title, url, urlToImage}) => (
-  <Card>
+  <Card sx={{height: '100%'}} >
+      <CardHeader
+        avatar={
+          <Avatar sx={{ bgcolor: grey[500] }} aria-label="recipe">
+            {author ? author[0] : ''}
+          </Avatar>
+        }
+        title={author}
+      />
       <CardMedia
         component="img"
         height="160"
@@ -23,11 +35,6 @@ const Article = ({author, description, title, url, urlToImage}) => (
           {description}
         </Typography>
       </CardContent>        
-      <CardActions sx={{justifyContent: 'flex-end'}}>
-        <Typography gutterBottom variant="caption" component="div">
-            {author}
-        </Typography>
-      </CardActions>
     </Card>
 );
 

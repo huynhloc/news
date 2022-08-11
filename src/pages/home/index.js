@@ -56,6 +56,7 @@ const Home = () => {
         <Toolbar sx={{ height: 80 }}>
           <Container maxWidth="xl" sx={{ marginY: 2 }}>
             <Autocomplete
+              data-testid="source-filter-combobox"
               disablePortal
               id="combo-box-demo"
               options={sources}

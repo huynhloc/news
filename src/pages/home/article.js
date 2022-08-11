@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Link from '@mui/material/Link';
@@ -12,7 +11,7 @@ import { grey } from '@mui/material/colors';
 
 
 const Article = ({author, description, title, url, urlToImage}) => (
-  <Card sx={{height: '100%'}} >
+  <Card sx={{height: '100%'}} data-testid="article">
       <CardHeader
         avatar={
           <Avatar sx={{ bgcolor: grey[500] }} aria-label="recipe">

@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
-import { AppBar, Box, Divider, Toolbar } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { AppBar, Box, Divider, Grid, Toolbar } from '@mui/material';
 import { getNews } from '../../apis/news';
+import Article from './article';
 
 const Home = () => {
+  const [articles, setArticles] = useState([]);
+
   const loadNews = async () => {
     try {
       const news = await getNews();
-      console.log(news);
+      setArticles(news?.articles || []);
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +32,13 @@ const Home = () => {
         </Toolbar>
         <Divider />
       </AppBar>
-      <div>Home</div>
+      <Grid container spacing={3}>
+        {articles?.map(article => (
+          <Grid item xs={12} sm={6} md={4} key={article.url}>
+            <Article {...article}/>
+          </Grid>
+        ))}
+      </Grid>
     </Box>
   )
 }
